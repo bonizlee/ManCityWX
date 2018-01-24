@@ -17,9 +17,10 @@
                 $json = array('result'=>'faild','msg'=>'未填写房间号');
             }else if (!isset($_POST["mobile"])||$_POST["mobile"] == "") {
                 $json = array('result'=>'faild','msg'=>'未填写手机');
-            }else if (!isset($_POST["idno"])||$_POST["idno"] == "") {
+            }/*else if (!isset($_POST["idno"])||$_POST["idno"] == "") {
                 $json = array('result'=>'faild','msg'=>'未填写身份证后8位');
-            }else if (!isset($_POST["wxid"])||$_POST["wxid"] == "") {
+            }*/
+            else if (!isset($_POST["wxid"])||$_POST["wxid"] == "") {
                 $json = array('result'=>'faild','msg'=>'未填写微信号');
             }else if (!isset($_POST["drawId"])||$_POST["drawId"] == "") {
                 $json = array('result'=>'faild','msg'=>'未提供正确抽奖活动');
@@ -28,7 +29,7 @@
             	$pname=$_POST["pname"]; 
             	$room=$_POST["room"]; 
             	$mobile=$_POST["mobile"]; 
-            	$idno=$_POST["idno"]; 
+            	$idno='';//$_POST["idno"]; 
             	$wxid=$_POST["wxid"]; 
             	$drawId=$_POST["drawId"];	
 				$json=addEnroll($pname,$room,$mobile,$idno,$wxid,$drawId);
