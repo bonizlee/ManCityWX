@@ -54,8 +54,7 @@
     			<div class="weui-btn-area">
     				<a class="weui-btn weui-btn_primary" href="javascript:" id="postMsg">提交</a>    				
     			</div>
-    		</div>
-    		
+    		</div>    		
 		</article>
     </div>
     

@@ -10,8 +10,24 @@
 	$drawId='1';
 	*/
 	
-	if (isset($_POST["addEnroll"])) {
-            if (!isset($_POST["pname"])||$_POST["pname"] == "") {
+	if (isset($_POST["addEnroll"])) {            
+		$json=addEnrollAction();
+		echo json_encode($json);
+	}else if(isset($_GET["queryEnrollByDraw"])||isset($_POST["queryEnrollByDraw"])){
+		if(!isset($_POST["drawId"])||$_POST["drawId"] == ""){
+			$json = array('result'=>'faild','msg'=>'抽奖活动错误');		
+		}
+		else{
+			$drawId=$_POST["drawId"];
+			$enrollDao=new EnrollDAO();
+			$json=$enrollDao->queryEnrollAllByDrawid($drawId);
+		}
+		echo json_encode($json);
+	}
+
+	
+	function addEnrollAction(){
+		if (!isset($_POST["pname"])||$_POST["pname"] == "") {
                 $json = array('result'=>'faild','msg'=>'未填写姓名');
             }else if (!isset($_POST["room"])||$_POST["room"] == "") {
                 $json = array('result'=>'faild','msg'=>'未填写房间号');
@@ -34,8 +50,8 @@
             	$drawId=$_POST["drawId"];	
 				$json=addEnroll($pname,$room,$mobile,$idno,$wxid,$drawId);
 		}
-	
-		echo json_encode($json);
+		
+		return $json;		
 	}
 	
 	function addEnroll($pname,$room,$mobile,$idno,$wxid,$drawId){
